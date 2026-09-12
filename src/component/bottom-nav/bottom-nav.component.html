@@ -1,7 +1,8 @@
 <div class="bottom-nav bg-[#EEF1FA] h-16 w-full justify-around flex items-center fixed bottom-0 left-0 border-t border-[#e5e7eb]">
   @for (item of items(); track item.route) {
     @if (!item.hideOnMobile) {
-      <a mat-icon-button [routerLink]="item.route" routerLinkActive="active-icon">
+      <a mat-icon-button [routerLink]="item.route" routerLinkActive="active-link"
+  [routerLinkActiveOptions]="{ exact: true }">
         <mat-icon>{{ item.icon }}</mat-icon>
       </a>
 

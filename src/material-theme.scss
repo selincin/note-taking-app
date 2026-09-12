@@ -7,16 +7,16 @@
 
 html {
   height: 100%;
-  @include mat.theme(
-    (
-      color: (
-        primary: mat.$azure-palette,
+  @include mat.theme((color: (primary: mat.$azure-palette,
         tertiary: mat.$blue-palette,
       ),
       typography: Roboto,
       density: 0,
-    )
-  );
+    ));
+  @include mat.form-field-overrides((
+      container-height: 3rem,
+      container-vertical-padding: 0.75rem,
+    ));
 }
 
 body {

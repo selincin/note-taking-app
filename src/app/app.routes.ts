@@ -4,6 +4,6 @@ import { ArchivedNotes } from '../app/pages/archived-notes/archived-notes';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'notes', pathMatch: 'full' },
-  { path: 'notes', component: Notes },
-  { path: 'archived', component: ArchivedNotes},
+  { path: 'notes', component: Notes ,  data: { title: 'All Notes' } },
+  { path: 'archived', component: ArchivedNotes, data: { title: 'Archived Notes' } },
 ];

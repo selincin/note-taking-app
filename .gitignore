@@ -11,6 +11,9 @@
 npm-debug.log
 yarn-error.log
 
+/.vxnotes
+/u.md
+
 # IDEs and editors
 .idea/
 .project
@@ -22,11 +25,11 @@ yarn-error.log
 
 # Visual Studio Code
 .vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-!.vscode/mcp.json
+.vscode/settings.json
+.vscode/tasks.json
+.vscode/launch.json
+.vscode/extensions.json
+.vscode/mcp.json
 .history/*
 
 # Miscellaneous
@@ -42,3 +45,11 @@ __screenshots__/
 # System files
 .DS_Store
 Thumbs.db
+
+# Playwright
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/

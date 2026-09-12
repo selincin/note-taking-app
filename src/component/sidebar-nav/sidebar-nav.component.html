@@ -1,0 +1,16 @@
+<div class="sidebar-nav h-screen w-64 bg-[#EEF1FA] p-2">
+  <div class="logo-container flex items-center p-3">
+    <img [src]="logoPath" class="h-10" />
+  </div>
+
+  <mat-nav-list>
+    @for (item of items(); track item.route) {
+      @if(!item.hideOnDesktop){
+        <a mat-list-item [routerLink]="item.route" >
+          <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+          <span matListItemTitle>{{ item.label }}</span>
+        </a>
+      }
+    }
+  </mat-nav-list>
+</div>

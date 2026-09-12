@@ -6,7 +6,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "bookshelf": {
+    "note-taking-app": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -54,10 +54,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "bookshelf:build:production"
+              "buildTarget": "note-taking-app:build:production"
             },
             "development": {
-              "buildTarget": "bookshelf:build:development"
+              "buildTarget": "note-taking-app:build:development"
             }
           },
           "defaultConfiguration": "development"

@@ -17,6 +17,12 @@ html {
       container-height: 3rem,
       container-vertical-padding: 0.75rem,
     ));
+     
+  @include mat.button-overrides((
+    tonal-container-color: #1F4FE0,
+    tonal-label-text-color: white,
+  ));
+
 }
 
 body {

@@ -12,5 +12,6 @@ import { NoteListItemComponent } from '../note-list-item/note-list-item.componen
 export class NoteListComponent {
 
   public notes = input.required<Note[]>();
+  public archived = input<boolean>(false);
 
 }

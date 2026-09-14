@@ -1,0 +1,30 @@
+.empty-note-state-container {
+    background-color: #fafaff;
+    background-image:
+        linear-gradient(#E4EAFA 1px, transparent 1px),
+        linear-gradient(90deg, #E4EAFA 1px, transparent 1px);
+    background-size: 26px 26px;
+}
+
+.sticky-note-styling {
+    height: 22rem;
+    width: 22rem;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    border-radius: 3px;
+    transform: rotate(-1.2deg);
+    box-shadow: 0 10px 30px rgba(16, 20, 45, .14);
+}
+
+.sticky-note-styling::after {
+    content: "";
+    position: absolute;
+    left: 22px;
+    top: 0;
+    bottom: 0;
+    width: 1.5px;
+    background: #F3B9D2;
+}

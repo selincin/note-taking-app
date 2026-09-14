@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, NavigationEnd, Router, RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
@@ -6,16 +6,17 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 import { toSignal } from '@angular/core/rxjs-interop';
 
+import { filter, map, startWith } from 'rxjs/operators';
+
 import { LayoutService } from '../../services/layout.service';
 import { NotesService } from '../../services/notes.service';
 import { NoteListComponent } from '../../component/note-list/note-list.component';
-import { filter, map, startWith } from 'rxjs/operators';
-
+import { EmptyNoteStateComponent } from '../../component/empty-note-state/empty-note-state.component';
 
 @Component({
   selector: 'app-all-notes',
   standalone: true,
-  imports: [NoteListComponent, MatIconModule, MatDividerModule, MatButtonModule, CommonModule, RouterModule],
+  imports: [NoteListComponent, MatIconModule, MatDividerModule, MatButtonModule, CommonModule, RouterModule, EmptyNoteStateComponent],
   templateUrl: './all-notes.page.html',
   styleUrl: './all-notes.page.css',
 })
@@ -24,7 +25,8 @@ export class AllNotes {
   private notesService = inject(NotesService);
   private router = inject(Router);
   private activatedRoute = inject(ActivatedRoute);
-
+  
+  public archived = input<boolean>(false); 
   public notes = this.notesService.notes;
   public loading = this.notesService.loading;
   public isHandset$ = this.layoutService.isHandset$;
@@ -42,7 +44,7 @@ export class AllNotes {
   );
 
   public ngOnInit(): void {
-    this.notesService.getNotes();
+    this.notesService.fetchNotes(false);
   }
 
   public goBack(): void {

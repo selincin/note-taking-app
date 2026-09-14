@@ -14,8 +14,13 @@ import { RelativeDatePipe } from '../../pipes/relative-date-pipe';
 })
 export class NoteListItemComponent {
   public note = input.required<Note>();
+  public archived = input<boolean>(false);
 
   public getNoteRoute(): string[] {
-    return ['/notes', this.note().id];
+    if (!this.archived()) {
+      return ['/notes', this.note().id];
+    } else {
+      return ['/archived', this.note().id];
+    }
   }
 }

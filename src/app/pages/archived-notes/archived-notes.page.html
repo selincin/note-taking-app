@@ -1,1 +1,21 @@
-<p>archived-notes works!</p>
+@let isDesktop = isDesktop$ | async;
+@let hasNote = hasSelectedNote();
+
+<div class="all-notes-container w-full h-screen flex">
+  @if (isDesktop || !hasNote) {
+    <div class="h-screen border-r border-[#e5e7eb] px-3 pb-20 flex flex-col overflow-auto"
+         [class]="isDesktop ? 'w-80' : 'w-full'">
+      <app-note-list [notes]="notes()" [archived]="true"></app-note-list>
+    </div>
+  }
+
+  @if (isDesktop || hasNote) {
+  <div class="flex-1">
+    @if (isDesktop && !hasNote) {
+    <app-empty-note-state [showStickyNote]="false"/>
+    } @else {
+    <router-outlet></router-outlet>
+    }
+  </div>
+  }
+</div>

@@ -3,28 +3,18 @@
 
 <div class="all-notes-container w-full h-screen flex">
   @if (isDesktop || !hasNote) {
-    <div class="h-screen border-r border-[#e5e7eb] px-3 pb-20 flex flex-col overflow-auto"
-         [class]="isDesktop ? 'w-80' : 'w-full'">
-      @if (isDesktop) {
-        <div class="flex items-center justify-center w-full sticky top-0 z-2 pt-6 pb-2">
-          <button matButton="tonal" class="create-note-btn w-full flex items-center justify-center gap-2">
-            <mat-icon>add</mat-icon>
-            Create New Note
-          </button>
-        </div>
-      }
-      <app-note-list [notes]="notes()"></app-note-list>
-    </div>
+  <div class="h-screen border-r border-[#e5e7eb] px-3 pb-20 flex flex-col overflow-auto"
+    [class]="isDesktop ? 'w-80' : 'w-full'">
+    <app-note-list [notes]="notes()" [archived]="false"></app-note-list>
+  </div>
   }
-
   @if (isDesktop || hasNote) {
-    <div class="p-5 flex-1">
-      @if (!isDesktop && hasNote) {
-        <button mat-icon-button (click)="goBack()" class="mb-3">
-          <mat-icon>arrow_back</mat-icon>
-        </button>
-      }
-      <router-outlet></router-outlet>
-    </div>
+  <div class="flex-1">
+    @if (isDesktop && !hasNote) {
+    <app-empty-note-state [showStickyNote]="true"/>
+    } @else {
+    <router-outlet></router-outlet>
+    }
+  </div>
   }
 </div>

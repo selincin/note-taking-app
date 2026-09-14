@@ -1,35 +1,70 @@
+@let isDesktop = isDesktop$ | async;
+
 @if (loading()) {
 <div class="text-center mt-10">Lade Notiz...</div>
-} @else if (note(); as n) {
-<div class="note-detail-container">
+} @else if (note(); as note) {
+<div class="note-detail-container p-5 h-screen">
+    @if(!isDesktop){
+    <button mat-icon-button (click)="goBack()" class="mb-3">
+        <mat-icon>arrow_back</mat-icon>
+    </button>
+    }
     <div class="note-detail-header gap-2 mb-4 flex flex-col">
-        <div class="note-detail-title text-2xl font-bold">{{ n.title }}</div>
+        <div class="flex justify-between items-center">
+            <div class="note-title text-2xl font-bold truncate">{{ note.title }}</div>
+            @if(note?.archived) {
+            <div class="flex gap-2">
+                <button matMiniFab (click)="toggleArchive(note)" matTooltip="unarchive">
+                    <mat-icon>unarchive</mat-icon>
+                </button>
+            </div>
+            } @else {
+            <button mat-icon-button [matMenuTriggerFor]="noteMenu">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #noteMenu="matMenu" class="note-context-menu">
+                <button mat-menu-item (click)="onEdit()">
+                    <mat-icon>edit</mat-icon>
+                    <span>Edit</span>
+                </button>
+                <button mat-menu-item (click)="toggleArchive(note)">
+                    <mat-icon>{{ note.archived ? 'unarchive' : 'archive' }}</mat-icon>
+                    <span>{{ note.archived ? 'Unarchive' : 'Archive' }}</span>
+                </button>
+                <button mat-menu-item (click)="onDelete(note)">
+                    <mat-icon>delete</mat-icon>
+                    <span>Delete</span>
+                </button>
+            </mat-menu>
+            }
+        </div>
         <div class="note-timestamps flex gap-3">
             <div class="note-created-at text-sm text-[#6b7280] flex gap-1">
                 <mat-icon class="note-icon" aria-hidden="false" fontIcon="calendar_today"></mat-icon>
-                {{ note()?.created_at | relativeDate }}
+                {{ note?.created_at | relativeDate }}
             </div>
-            @if(note()?.edited_at) {
+            @if(note?.edited_at) {
             <div class="note-created-at text-sm text-[#6b7280] flex gap-1">
                 <mat-icon class="note-icon" aria-hidden="false" fontIcon="edit"></mat-icon>
-                {{ note()?.edited_at | relativeDate }}
+                {{ note?.edited_at | relativeDate }}
             </div>
             }
         </div>
         <div class="note-detail-tags">
-        <mat-chip-set>
-          @for (tag of n.tags; track tag) {
-            <mat-chip>{{ tag }}</mat-chip>
-          }
-        </mat-chip-set>
-      </div>
+            <mat-chip-set>
+                @for (tag of note.tags; track tag) {
+                <mat-chip>{{ tag }}</mat-chip>
+                }
+            </mat-chip-set>
+        </div>
     </div>
     <div class="note-detail-content text-base text-gray-700">
-        {{ n.text }}
+        {{ note.text }}
     </div>
-</div>
-} @else {
-<div class="no-note-selected text-center text-gray-500 mt-10">
-    No note selected.
+    <div class="fixed right-6 z-10" [class]="isDesktop ? 'bottom-6' : 'bottom-20'">
+        <button matFab aria-label="Example icon button with a delete icon">
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
 </div>
 }

@@ -1,11 +1,11 @@
 <div
   class="note-list-item-container w-full h-35 border-b border-[#e5e7eb] flex flex-col p-3 hover:bg-[#EEF1FA] cursor-pointer justify-between"
-  [routerLink]="getNoteRoute()">
+  [routerLink]="getNoteRoute()" [class]="note().archived ? 'opacity-50' : ''">
   <div class="note-title text-lg font-bold truncate">{{ note().title }}</div>
   <div>
     <mat-chip-set>
       @for (tag of note().tags; track tag) {
-        <mat-chip>{{ tag }}</mat-chip>
+      <mat-chip>{{ tag }}</mat-chip>
       }
     </mat-chip-set>
   </div>
@@ -15,10 +15,10 @@
       {{ note().created_at | relativeDate }}
     </div>
     @if(note().edited_at) {
-      <div class="note-created-at text-sm text-[#6b7280] flex gap-1">
-        <mat-icon class="note-icon" aria-hidden="false" fontIcon="edit"></mat-icon>
-        {{ note().edited_at | relativeDate }}
-      </div>
+    <div class="note-created-at text-sm text-[#6b7280] flex gap-1">
+      <mat-icon class="note-icon" aria-hidden="false" fontIcon="edit"></mat-icon>
+      {{ note().edited_at | relativeDate }}
+    </div>
     }
   </div>
 </div>

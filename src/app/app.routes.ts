@@ -5,15 +5,26 @@ import { NoteDetailComponent } from './component/note-detail/note-detail.compone
 
 export const routes: Routes = [
   { path: '', redirectTo: 'notes', pathMatch: 'full' },
-    {
+  {
     path: 'notes',
     component: AllNotes,
     data: { title: 'All notes' },
     children: [
-      { path: ':id', 
+      {
+        path: ':id',
         component: NoteDetailComponent,
       },
     ],
   },
-  { path: 'archived', component: ArchivedNotes, data: { title: 'Archived Notes' } },
+  {
+    path: 'archived',
+    component: ArchivedNotes,
+    data: { title: 'Archived Notes' },
+    children: [
+      {
+        path: ':id',
+        component: NoteDetailComponent,
+      },
+    ],
+  },
 ];

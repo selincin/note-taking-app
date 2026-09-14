@@ -1,0 +1,35 @@
+@if (loading()) {
+<div class="text-center mt-10">Lade Notiz...</div>
+} @else if (note(); as n) {
+<div class="note-detail-container">
+    <div class="note-detail-header gap-2 mb-4 flex flex-col">
+        <div class="note-detail-title text-2xl font-bold">{{ n.title }}</div>
+        <div class="note-timestamps flex gap-3">
+            <div class="note-created-at text-sm text-[#6b7280] flex gap-1">
+                <mat-icon class="note-icon" aria-hidden="false" fontIcon="calendar_today"></mat-icon>
+                {{ note()?.created_at | relativeDate }}
+            </div>
+            @if(note()?.edited_at) {
+            <div class="note-created-at text-sm text-[#6b7280] flex gap-1">
+                <mat-icon class="note-icon" aria-hidden="false" fontIcon="edit"></mat-icon>
+                {{ note()?.edited_at | relativeDate }}
+            </div>
+            }
+        </div>
+        <div class="note-detail-tags">
+        <mat-chip-set>
+          @for (tag of n.tags; track tag) {
+            <mat-chip>{{ tag }}</mat-chip>
+          }
+        </mat-chip-set>
+      </div>
+    </div>
+    <div class="note-detail-content text-base text-gray-700">
+        {{ n.text }}
+    </div>
+</div>
+} @else {
+<div class="no-note-selected text-center text-gray-500 mt-10">
+    No note selected.
+</div>
+}

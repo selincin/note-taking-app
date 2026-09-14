@@ -1,15 +1,12 @@
-<div class="app-shell flex h-screen">
-  @if (isHandset$ | async) {
+<div class="app-shell flex h-screen overflow-hidden">
+  @if (!(isDesktop$ | async)) {
     <app-bottom-nav [items]="navItems" />
   } @else {
     <app-sidebar-nav [items]="navItems" />
   }
-
   <div class="flex flex-col w-full">
-    @if(!(isHandset$ | async)) {
-       <app-header />
-    }
-    <main class="content overflow-y-auto">
+    <app-header />
+    <main class="content">
       <router-outlet></router-outlet>
     </main>
   </div>

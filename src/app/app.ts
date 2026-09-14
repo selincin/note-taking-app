@@ -15,8 +15,13 @@ import { HeaderComponent } from './component/header/header.component';
   styleUrl: './app.css'
 })
 export class App {
+  constructor() { }
+
   private layoutService = inject(LayoutService);
   public navItems = NAV_ITEMS;
-
+  
   isHandset$ = this.layoutService.isHandset$;
+  isTablet$ = this.layoutService.isTablet$;
+  isDesktop$ = this.layoutService.isDesktop$;
+
 }

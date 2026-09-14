@@ -1,7 +1,21 @@
 <div class="header-container w-full h-20 border-b border-[#e5e7eb] flex items-center p-3 justify-between">
-    <div class="font-bold text-xl">{{ title() }}</div>
-    <mat-form-field appearance="outline" subscriptSizing="dynamic"  class="search-field">
+    <div>
+        <div class="font-bold text-xl">{{ title() }}</div>
+        <span>{{ notesService.notes().length }} Notes</span>
+    </div>
+    @if (isDesktop$ | async) {
+    <mat-form-field appearance="outline" subscriptSizing="dynamic" class="search-field">
         <mat-icon matPrefix>search</mat-icon>
         <input matInput />
     </mat-form-field>
+    }
 </div>
+
+<!-- bei archived notes die anzahl anpassen -->
+
+<!-- TODO
+ * create note
+ * edit delete archive note in detailcomponent
+ * skeleton loader
+ * i18n
+-->

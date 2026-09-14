@@ -14,13 +14,19 @@ html {
       density: 0,
     ));
   @include mat.form-field-overrides((
-      container-height: 3rem,
-      container-vertical-padding: 0.75rem,
+    container-height: 3rem,
+    container-vertical-padding: 0.75rem,
     ));
-     
+
   @include mat.button-overrides((
     tonal-container-color: #1F4FE0,
-    tonal-label-text-color: white,
+    tonal-label-text-color: #FFFFFF,
+    ));
+  @include mat.chips-overrides((
+    disabled-label-text-color: orange,
+    elevated-container-color: #DDE4F8,
+    outline-width: 0,
+    label-text-color: #173BA8,
   ));
 
 }

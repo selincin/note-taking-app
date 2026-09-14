@@ -1,9 +1,0 @@
-<div class="all-notes-container w-full lg:w-80 h-screen border-r border-[#e5e7eb] p-5 flex flex-col">
-    @if(!(isHandset$ | async)) {
-        <button matButton="tonal" class="create-note-btn w-full flex items-center justify-center gap-2 mb-3">
-            <mat-icon>add</mat-icon>
-            Create New Note
-        </button>
-    }
-    <app-note-list></app-note-list>
-</div>

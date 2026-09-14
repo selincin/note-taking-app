@@ -19,6 +19,9 @@
     "@angular/material": "^21.2.14",
     "@angular/platform-browser": "^21.2.0",
     "@angular/router": "^21.2.0",
+    "@supabase/ssr": "^0.12.7",
+    "@supabase/supabase-js": "^2.109.0",
+    "dayjs": "^1.11.23",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
   },

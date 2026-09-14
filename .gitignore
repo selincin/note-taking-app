@@ -53,3 +53,8 @@ node_modules/
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
+
+# Environment files
+src/environments/environment.ts
+src/environments/environment.base.ts
+src/environments/environment.development.ts

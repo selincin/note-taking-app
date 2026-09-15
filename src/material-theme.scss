@@ -16,8 +16,13 @@ html {
   @include mat.form-field-overrides((container-height: 3rem,
       container-vertical-padding: 0.75rem,
     ));
-  @include mat.button-overrides((tonal-container-color: #1F4FE0,
+  @include mat.fab-overrides((
+    container-color: #444CF7,  
+    foreground-color: #ffff  
+    ));
+  @include mat.button-overrides((tonal-container-color: #444CF7,
       tonal-label-text-color: #FFFFFF,
+       filled-container-color: #444CF7,
     ));
   @include mat.chips-overrides((disabled-label-text-color: orange,
       elevated-container-color: #DDE4F8,

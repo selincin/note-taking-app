@@ -1,0 +1,40 @@
+<h2 mat-dialog-title>{{ isEditMode ? 'Edit Note' : 'Create New Note' }}</h2>
+
+<form [formGroup]="noteForm" (ngSubmit)="onSave()">
+  <mat-dialog-content>
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Text</mat-label>
+      <textarea matInput formControlName="text" rows="5"></textarea>
+   
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Tags</mat-label>
+      <mat-chip-grid #chipGrid aria-label="Tag selection">
+        @for (tag of tags(); track tag) {
+          <mat-chip-row (removed)="removeTag(tag)">
+            {{ tag }}
+            <button matChipRemove aria-label="'remove ' + tag">
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-chip-row>
+        }
+      </mat-chip-grid>
+      <input
+        placeholder="New tag..."
+        [matChipInputFor]="chipGrid"
+        [matChipInputSeparatorKeyCodes]="[13, 188]"
+        (matChipInputTokenEnd)="addTag($event)" />
+    </mat-form-field>
+  </mat-dialog-content>  
+
+  <mat-dialog-actions align="end">
+    <button mat-button type="button" (click)="onCancel()">Cancel</button>
+    <button mat-flat-button type="submit" [disabled]="saveDisabled()">Save</button>
+  </mat-dialog-actions>
+</form>

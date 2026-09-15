@@ -23,7 +23,7 @@
                 <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #noteMenu="matMenu" class="note-context-container">
-                <button mat-menu-item (click)="onEdit()" class="note-context-menu">
+                <button mat-menu-item (click)="openDialog(note)" class="note-context-menu">
                     <mat-icon>edit</mat-icon>
                     <span>Edit</span>
                 </button>
@@ -62,7 +62,7 @@
         {{ note.text }}
     </div>
     <div class="fixed right-6 z-10" [class]="isDesktop ? 'bottom-6' : 'bottom-20'">
-        <button matFab aria-label="Example icon button with a delete icon">
+        <button matFab aria-label="Example icon button with a delete icon" (click)="openDialog()">
             <mat-icon>add</mat-icon>
         </button>
     </div>

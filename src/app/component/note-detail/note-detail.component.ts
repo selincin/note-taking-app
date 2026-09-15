@@ -16,6 +16,8 @@ import { Note } from '../../models/note.model';
 import { NotesService } from '../../services/notes.service';
 import { RelativeDatePipe } from '../../pipes/relative-date-pipe';
 import { LayoutService } from '../../services/layout.service';
+import { MatDialog } from '@angular/material/dialog';
+import { NotesDialogComponent } from '../dialogs/notes-dialog/notes-dialog.component';
 
 @Component({
   selector: 'app-note-detail',
@@ -47,6 +49,7 @@ export class NoteDetailComponent {
   note = signal<Note | undefined>(undefined);
   loading = signal(true);
   isDesktop$ = this.layoutService.isDesktop$;
+  readonly dialog = inject(MatDialog);
 
   ngOnInit() {
     this.paramSub = this.route.paramMap.subscribe(async (params) => {
@@ -81,12 +84,22 @@ export class NoteDetailComponent {
     this.location.back();
   }
 
-  public onEdit() {
-    // deine Logik, z.B. Navigation zur Edit-Ansicht
-  }
-
   public onDelete(note: Note) {
     this.notesService.deleteNote(note.id);
     this.router.navigate(['/notes']);
+  }
+
+  // edit and create new note
+  public openDialog(note?: Note) {
+    const dialogRef = this.dialog.open(NotesDialogComponent, {
+      data: { note }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // je nachdem ob Edit oder Create
+        console.log(result);
+      }
+    });
   }
 }

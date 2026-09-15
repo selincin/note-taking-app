@@ -5,7 +5,11 @@
   @if (isDesktop || !hasNote) {
     <div class="h-screen border-r border-[#e5e7eb] px-3 pb-20 flex flex-col overflow-auto"
          [class]="isDesktop ? 'w-80' : 'w-full'">
-      <app-note-list [notes]="notes()" [archived]="true"></app-note-list>
+         @if(notes().length > 0) {
+           <app-note-list [notes]="notes()" [archived]="true"></app-note-list>
+          } @else {
+              <app-empty-archived-state></app-empty-archived-state>
+            }
     </div>
   }
 

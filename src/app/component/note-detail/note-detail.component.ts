@@ -71,9 +71,9 @@ export class NoteDetailComponent {
   public toggleArchive(note: Note) {
     this.notesService.toggleArchive(note);
     if(note.archived) {
-      this.router.navigate(['/notes']);
-    } else {
       this.router.navigate(['/archived']);
+    } else {
+      this.router.navigate(['/notes']);
     }
   }
 

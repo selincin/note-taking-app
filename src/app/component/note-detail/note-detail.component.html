@@ -22,16 +22,16 @@
             <button mat-icon-button [matMenuTriggerFor]="noteMenu">
                 <mat-icon>more_vert</mat-icon>
             </button>
-            <mat-menu #noteMenu="matMenu" class="note-context-menu">
-                <button mat-menu-item (click)="onEdit()">
+            <mat-menu #noteMenu="matMenu" class="note-context-container">
+                <button mat-menu-item (click)="onEdit()" class="note-context-menu">
                     <mat-icon>edit</mat-icon>
                     <span>Edit</span>
                 </button>
-                <button mat-menu-item (click)="toggleArchive(note)">
+                <button mat-menu-item (click)="toggleArchive(note)" class="note-context-menu">
                     <mat-icon>{{ note.archived ? 'unarchive' : 'archive' }}</mat-icon>
                     <span>{{ note.archived ? 'Unarchive' : 'Archive' }}</span>
                 </button>
-                <button mat-menu-item (click)="onDelete(note)">
+                <button mat-menu-item (click)="onDelete(note)" class="delete-menu-item" >
                     <mat-icon>delete</mat-icon>
                     <span>Delete</span>
                 </button>

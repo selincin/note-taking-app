@@ -25,11 +25,22 @@ html {
       label-text-color: #173BA8,
     ));
 
+  .note-context-container {
+    @include mat.menu-overrides((
+        container-color: #f7f9fc,
+      ));
+  }
   .note-context-menu {
     @include mat.menu-overrides((
-      container-color: #DDE4F8,
         item-label-text-color: #173BA8,
         item-icon-color: #173BA8,
+      ));
+  }
+
+  .delete-menu-item {
+    @include mat.menu-overrides((
+        item-label-text-color: #dc2626,
+        item-icon-color: #dc2626,
       ));
   }
 

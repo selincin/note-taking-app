@@ -1,4 +1,4 @@
-import { Component, inject, signal, OnDestroy } from '@angular/core';
+import { Component, inject, signal, OnDestroy, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 
@@ -23,6 +23,8 @@ export class HeaderComponent implements OnDestroy {
   private router = inject(Router);
   private activatedRoute = inject(ActivatedRoute);
   private routerSub: Subscription;
+  public searchTitle = input.required<string>();
+
   
   isDesktop$ = inject(LayoutService).isDesktop$;
   title = signal(this.getCurrentTitle());

@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { CommonModule, Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
@@ -45,11 +45,13 @@ export class NoteDetailComponent {
 
   private paramSub?: Subscription;
   private layoutService = inject(LayoutService);
-  
-  note = signal<Note | undefined>(undefined);
-  loading = signal(true);
+  private currentId = signal<string | undefined>(undefined);
+  public note = computed(() =>
+    this.notesService.notes().find(n => n.id === this.currentId())
+  );
+  public loading = signal(true);
+  public readonly dialog = inject(MatDialog);
   isDesktop$ = this.layoutService.isDesktop$;
-  readonly dialog = inject(MatDialog);
 
   ngOnInit() {
     this.paramSub = this.route.paramMap.subscribe(async (params) => {
@@ -60,9 +62,12 @@ export class NoteDetailComponent {
         return;
       }
 
-      this.loading.set(true);
-      const result = await this.notesService.getNoteById(id);
-      this.note.set(result);
+      this.currentId.set(id);
+
+      if (!this.notesService.notes().some(n => n.id === id)) {
+        await this.notesService.getNoteById(id);
+      }
+
       this.loading.set(false);
     });
   }
@@ -97,7 +102,6 @@ export class NoteDetailComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        // je nachdem ob Edit oder Create
         console.log(result);
       }
     });

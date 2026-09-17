@@ -1,6 +1,8 @@
 <div class="pb-15">
   @for (note of notes(); track note.id) {
-    <app-note-list-item [note]="note" [archived]="archived()"></app-note-list-item>
+    <div class="border-b border-[#e5e7eb]">
+      <app-note-list-item [note]="note" [archived]="archived()"></app-note-list-item>
+    </div>
   }
 </div>
 

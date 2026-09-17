@@ -5,13 +5,23 @@
   @if (isDesktop || !hasNote) {
   <div class="h-screen border-r border-[#e5e7eb] px-3 pb-20 flex flex-col overflow-auto"
     [class]="isDesktop ? 'w-80' : 'w-full'">
+    @if(notes().length > 0) {
+
     <app-note-list [notes]="notes()" [archived]="false"></app-note-list>
+    } @else {
+    <div class="flex flex-col items-center justify-center h-screen p-5 text-center">
+      <div class="text-base font-bold mt-2">Keine Notizen gefunden</div>
+      <div class="text-sm text-gray-500 mt-1">
+        Für "{{ notesService.searchTerm() }}" wurden keine Ergebnisse gefunden.
+      </div>
+    </div>
+    }
   </div>
   }
   @if (isDesktop || hasNote) {
   <div class="flex-1">
     @if (isDesktop && !hasNote) {
-    <app-empty-note-state [showStickyNote]="true"/>
+    <app-empty-note-state [showStickyNote]="true" />
     } @else {
     <router-outlet></router-outlet>
     }

@@ -1,5 +1,5 @@
 <div
-  class="note-list-item-container w-full h-35 border-b border-[#e5e7eb] flex flex-col p-3 hover:bg-[#EEF1FA] cursor-pointer justify-between"
+  class="note-list-item-container w-full h-35 flex flex-col p-3 hover:bg-[#EEF1FA] cursor-pointer justify-between"
   [routerLink]="getNoteRoute()" [class]="note().archived ? 'opacity-50' : ''">
   <div class="note-title text-lg font-bold truncate">{{ note().title }}</div>
   <div>

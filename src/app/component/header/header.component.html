@@ -1,12 +1,13 @@
-<div class="header-container w-full h-20 border-b border-[#e5e7eb] flex items-center p-3 justify-between">
+<div class="header-container w-full h-20 border-b border-[#e5e7eb] flex items-center p-5 justify-between">
     <div>
-        <div class="font-bold text-xl">{{ title() }}</div>
+        <div class="font-bold text-2xl">{{ title() }}</div>
         <span>{{ notesService.notes().length }} Notes</span>
     </div>
     @if (isDesktop$ | async) {
     <mat-form-field appearance="outline" subscriptSizing="dynamic" class="search-field">
         <mat-icon matPrefix>search</mat-icon>
-        <input matInput />
+        <input matInput [ngModel]="notesService.searchTerm()"
+          (ngModelChange)="notesService.searchTerm.set($event)"  />
     </mat-form-field>
     }
 </div>

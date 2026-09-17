@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { AllNotes } from './pages/all-notes/all-notes.page';
 import { ArchivedNotes } from './pages/archived-notes/archived-notes.page';
 import { NoteDetailComponent } from './component/note-detail/note-detail.component';
+import { SearchPage } from './pages/search/search.page';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'notes', pathMatch: 'full' },
@@ -27,4 +28,5 @@ export const routes: Routes = [
       },
     ],
   },
+  { path: 'search', data: { title: 'Search' }, component: SearchPage }
 ];

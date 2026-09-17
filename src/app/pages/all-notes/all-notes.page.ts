@@ -4,9 +4,9 @@ import { ActivatedRoute, NavigationEnd, Router, RouterModule } from '@angular/ro
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 
-import { filter, map, startWith } from 'rxjs/operators';
+import { debounceTime, filter, map, startWith } from 'rxjs/operators';
 
 import { LayoutService } from '../../services/layout.service';
 import { NotesService } from '../../services/notes.service';
@@ -21,13 +21,24 @@ import { EmptyNoteStateComponent } from '../../component/empty-note-state/empty-
   styleUrl: './all-notes.page.css',
 })
 export class AllNotes {
+  constructor() {
+    toObservable(this.notesService.searchTerm)
+      .pipe(
+        debounceTime(800),
+        filter(term => term.trim().length >= 3)
+      )
+      .subscribe(term => {
+        this.notesService.addRecentSearch(term);
+      });
+  }
+
   private layoutService = inject(LayoutService);
-  private notesService = inject(NotesService);
   private router = inject(Router);
   private activatedRoute = inject(ActivatedRoute);
   
-  public archived = input<boolean>(false); 
-  public notes = this.notesService.notes;
+  public notesService = inject(NotesService);
+  public archived = input<boolean>(false);
+  public notes = this.notesService.filteredNotes;
   public loading = this.notesService.loading;
   public isHandset$ = this.layoutService.isHandset$;
   public isTablet$ = this.layoutService.isTablet$;

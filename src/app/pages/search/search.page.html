@@ -1,0 +1,45 @@
+<div class="">
+    <mat-form-field appearance="outline" subscriptSizing="dynamic" class="w-full p-5">
+        <mat-icon matPrefix>search</mat-icon>
+        <input 
+            matInput 
+            placeholder="Search notes..." 
+            [ngModel]="notesService.searchTerm()"
+            (ngModelChange)="notesService.searchTerm.set($event)"
+        />
+    </mat-form-field>
+
+    @if (notesService.searchTerm().trim().length >= 3) {
+        @if (notesService.filteredNotes().length > 0) {
+            <div class="h-screen p-5">
+                <app-note-list [notes]="notesService.filteredNotes()" [archived]="false" />
+            </div>
+        } @else {
+            <div class="flex flex-col items-center justify-center h-screen p-5 text-center">
+                <div class="text-base font-bold mt-2">Keine Notizen gefunden</div>
+                <div class="text-sm text-gray-500 mt-1">
+                    Für "{{ notesService.searchTerm() }}" wurden keine Ergebnisse gefunden.
+                </div>
+            </div>
+        }
+    } @else {
+    <div class="custom-notes-background h-screen flex-1 overflow-y-auto p-4 flex flex-col gap-5">
+            <!-- Letzte Suchen -->
+            <div class="flex flex-col gap-2">
+                <div class="flex items-center">
+                    <div class="flex-1 text-xs uppercase text-gray-500">Letzte Suchen</div>
+                    <div class="text-xs text-blue-700 cursor-pointer" (click)="notesService.clearRecentSearches()">Löschen</div>
+                </div>
+                <div class="flex flex-col gap-2">
+                    @for (term of notesService.recentSearches(); track term) {
+                    <div class="flex items-center gap-2 h-12 p-2 bg-white rounded-lg cursor-pointer"
+                        (click)="notesService.searchTerm.set(term)">
+                        <mat-icon matPrefix>access_time</mat-icon>
+                        <span class="flex-1 text-[14px] text-[#171821]">{{ term }}</span>
+                    </div>
+                    }
+                </div>
+            </div>
+    </div>
+    }
+</div>

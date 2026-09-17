@@ -27,7 +27,7 @@ export class ArchivedNotes {
   private router = inject(Router);
   private activatedRoute = inject(ActivatedRoute);
 
-  public notes = this.notesService.notes; 
+  public notes = this.notesService.filteredNotes; 
   public isHandset$ = this.layoutService.isHandset$;
   public isTablet$ = this.layoutService.isTablet$;
   public isDesktop$ = this.layoutService.isDesktop$;

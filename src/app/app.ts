@@ -6,6 +6,7 @@ import { LayoutService } from './services/layout.service';
 import { NAV_ITEMS } from './models/nav-item.model';
 import { BottomNavComponent } from './component/bottom-nav/bottom-nav.component';
 import { HeaderComponent } from './component/header/header.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -15,13 +16,16 @@ import { HeaderComponent } from './component/header/header.component';
   styleUrl: './app.css'
 })
 export class App {
-  constructor() { }
-
+  private translate = inject(TranslateService);
   private layoutService = inject(LayoutService);
   public navItems = NAV_ITEMS;
-  
+
   isHandset$ = this.layoutService.isHandset$;
   isTablet$ = this.layoutService.isTablet$;
   isDesktop$ = this.layoutService.isDesktop$;
+
+  constructor() {
+    this.translate.use('de');
+  }
 
 }

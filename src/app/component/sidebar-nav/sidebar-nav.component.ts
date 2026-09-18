@@ -19,12 +19,11 @@ import { NotesService } from '../../services/notes.service';
   styleUrl: './sidebar-nav.component.css'
 })
 
-export class SidebarNavComponent {
-  public logoPath = 'assets/logos/logo.png';
-
+export class SidebarNavComponent {  
   private router = inject(Router);
   public notesService = inject(NotesService);
   public items = input.required<NavItem[]>();
+  public logoPath = 'assets/logos/logo.png';
 
   public showTags = toSignal(
     this.router.events.pipe(

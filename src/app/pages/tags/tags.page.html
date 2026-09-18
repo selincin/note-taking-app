@@ -1,0 +1,37 @@
+<div class="h-screen p-5">
+    <mat-chip-set aria-label="Tag filter">
+        @for (tag of notesService.allTags(); track tag) {
+        <mat-chip [highlighted]="notesService.selectedTags().includes(tag)" (click)="toggleTag(tag)">
+            {{ tag }}
+            @if (notesService.selectedTags().includes(tag)) {
+            <button matChipRemove (click)="onRemove(tag, $event)">
+                <mat-icon>cancel</mat-icon>
+            </button>
+            }
+        </mat-chip>
+        }
+    </mat-chip-set>
+    @if (notesService.selectedTags().length === 0) {
+    <div class="h-screen flex justify-center items-center">
+        <div class="flex flex-col items-center justify-center h-screen p-5 text-center">
+        <div class="text-base font-bold mt-2">Kein Tag ausgewählt</div>
+        <div class="text-sm text-gray-500 mt-1">
+            Wähle oben einen oder mehrere Tags aus, um passende Notizen zu sehen.
+        </div>
+        </div>
+    </div>
+    } @else if (notesService.filteredNotes().length > 0) {
+    <div class="mt-5">
+        <app-note-list [notes]="notesService.filteredNotes()" [archived]="false" />
+    </div>
+    } @else {
+    <div class="h-screen flex justify-center items-center">
+        <div class="flex flex-col items-center justify-center h-screen p-5 text-center">
+        <div class="text-base font-bold mt-2">Keine Notizen gefunden</div>
+        <div class="text-sm text-gray-500 mt-1">
+            Für die ausgewählten Tags wurden keine Notizen gefunden.
+        </div>
+        </div>
+    </div>
+    }
+</div>

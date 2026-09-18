@@ -3,7 +3,7 @@
 @if (loading()) {
 <div class="text-center mt-10">Lade Notiz...</div>
 } @else if (note(); as note) {
-<div class="note-detail-container p-5 h-screen">
+<div class="custom-notes-background p-5 h-screen">
     @if(!isDesktop){
     <button mat-icon-button (click)="goBack()" class="mb-3">
         <mat-icon>arrow_back</mat-icon>

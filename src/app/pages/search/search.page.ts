@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, effect, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -6,8 +6,10 @@ import { MatIconModule } from '@angular/material/icon';
 
 import { NotesService } from '../../services/notes.service';
 import { NoteListComponent } from '../../component/note-list/note-list.component';
-import { toObservable } from '@angular/core/rxjs-interop';
+import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { debounceTime, filter } from 'rxjs';
+import { LayoutService } from '../../services/layout.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -22,6 +24,11 @@ import { debounceTime, filter } from 'rxjs';
   styleUrl: './search.page.css',
 })
 export class SearchPage {
+  private layoutService = inject(LayoutService);
+  private isDesktop = toSignal(this.layoutService.isDesktop$, { initialValue: false });
+  private router = inject(Router); 
+  public notesService = inject(NotesService);
+
   constructor() {
     toObservable(this.notesService.searchTerm)
       .pipe(
@@ -31,11 +38,14 @@ export class SearchPage {
       .subscribe(term => {
         this.notesService.addRecentSearch(term);
       });
+
+      effect(() => {
+      if (this.isDesktop()) {
+        this.router.navigate(['/notes']);
+      }
+    });
   }
   
-  public notesService = inject(NotesService);
-
-
   ngOnInit(): void {
     this.notesService.fetchNotes(false);
   }

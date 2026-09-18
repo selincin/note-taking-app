@@ -5,13 +5,32 @@
 
   <mat-nav-list>
     @for (item of items(); track item.route) {
-      @if(!item.hideOnDesktop){
-        <a mat-list-item [routerLink]="item.route" routerLinkActive="active-link"
-  [routerLinkActiveOptions]="{ exact: false }">
-          <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
-          <span matListItemTitle>{{ item.label }}</span>
-        </a>
-      }
+    @if(!item.hideOnDesktop){
+    <a mat-list-item [routerLink]="item.route" routerLinkActive="active-link"
+      [routerLinkActiveOptions]="{ exact: false }">
+      <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+      <span matListItemTitle>{{ item.label }}</span>
+    </a>
+    }
     }
   </mat-nav-list>
+  @if (showTags()) {
+    <div class="px-3 mt-4 flex flex-col gap-2 overflow-y-auto">
+      <div class="text-xs uppercase text-[#8A90A8]">Tags</div>
+      <mat-chip-set aria-label="Tag filter">
+        @for (tag of notesService.allTags(); track tag) {
+          <mat-chip
+            [highlighted]="notesService.selectedTags().includes(tag)"
+            (click)="toggleTag(tag)">
+            {{ tag }}
+            @if (notesService.selectedTags().includes(tag)) {
+              <button matChipRemove (click)="onRemove(tag, $event)">
+                <mat-icon>cancel</mat-icon>
+              </button>
+            }
+          </mat-chip>
+        }
+      </mat-chip-set>
+    </div>
+  }
 </div>

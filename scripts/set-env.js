@@ -1,5 +1,13 @@
 const fs = require('fs');
 
+const supabaseUrl = process.env['SUPABASE_URL'];
+const supabaseKey = process.env['SUPABASE_KEY'];
+
+if (!supabaseUrl || !supabaseKey) {
+  console.error('SUPABASE_URL or SUPABASE_KEY environment variable is missing!');
+  process.exit(1);
+}
+
 const envConfigFile = `export interface IEnvironment {
   production: boolean;
   SUPABASE_URL: string;
@@ -9,8 +17,8 @@ const envConfigFile = `export interface IEnvironment {
 
 export const baseEnvironment: IEnvironment = {
   production: true,
-  SUPABASE_URL: '${process.env['SUPABASE_URL']}',
-  SUPABASE_KEY: '${process.env['SUPABASE_KEY']}',
+  SUPABASE_URL: ${JSON.stringify(supabaseUrl)},
+  SUPABASE_KEY: ${JSON.stringify(supabaseKey)},
   API_NOTES: '/rest/v1/notes',
 };
 `;

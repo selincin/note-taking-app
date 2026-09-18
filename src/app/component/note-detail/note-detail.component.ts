@@ -36,13 +36,10 @@ import { NotesDialogComponent } from '../dialogs/notes-dialog/notes-dialog.compo
 })
 
 export class NoteDetailComponent {
-  constructor(
-    private route: ActivatedRoute,
-    private notesService: NotesService,
-    private router: Router,
-    private location: Location
-  ) { }
-
+  private route = inject(ActivatedRoute);
+  private notesService = inject(NotesService);
+  private router = inject(Router);
+  private location = inject(Location);
   private paramSub?: Subscription;
   private layoutService = inject(LayoutService);
   private currentId = signal<string | undefined>(undefined);
@@ -51,7 +48,8 @@ export class NoteDetailComponent {
   );
   public loading = signal(true);
   public readonly dialog = inject(MatDialog);
-  isDesktop$ = this.layoutService.isDesktop$;
+  public isDesktop$ = this.layoutService.isDesktop$;
+
 
   ngOnInit() {
     this.paramSub = this.route.paramMap.subscribe(async (params) => {
@@ -78,7 +76,7 @@ export class NoteDetailComponent {
 
   public toggleArchive(note: Note) {
     this.notesService.toggleArchive(note);
-    if(note.archived) {
+    if (note.archived) {
       this.router.navigate(['/archived']);
     } else {
       this.router.navigate(['/notes']);

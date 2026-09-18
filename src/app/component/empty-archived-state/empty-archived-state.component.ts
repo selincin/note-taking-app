@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon'
 
 import { MatButtonModule } from '@angular/material/button';
@@ -14,11 +14,8 @@ import { Router } from '@angular/router';
   templateUrl: './empty-archived-state.component.html',
   styleUrl: './empty-archived-state.component.css',
 })
-export class EmptyArchivedStateComponent { 
-    constructor(
-    private router: Router,
-  ) { }
-
+export class EmptyArchivedStateComponent {
+  private router = inject(Router);
 
   public navigateToAllNotes() {
     this.router.navigate(['/notes']);

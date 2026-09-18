@@ -20,10 +20,9 @@ import { NotesDialogComponent } from '../dialogs/notes-dialog/notes-dialog.compo
   styleUrl: './empty-note-state.component.css',
 })
 export class EmptyNoteStateComponent {
-  readonly dialog = inject(MatDialog);
-
-  iconPath = 'assets/logos/notes-icon.svg';
-  showStickyNote = input<boolean>(true);
+  public readonly dialog = inject(MatDialog);
+  public iconPath = 'assets/logos/notes-icon.svg';
+  public showStickyNote = input<boolean>(true);
 
   public openDialog() {
     const dialogRef = this.dialog.open(NotesDialogComponent);

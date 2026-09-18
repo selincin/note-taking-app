@@ -17,12 +17,9 @@ import { NotesDialogComponent } from '../dialogs/notes-dialog/notes-dialog.compo
 })
 
 export class BottomNavComponent {
-  constructor(
-    private router: Router,
-  ) { }
-
-  public readonly dialog = inject(MatDialog);
-  items = input.required<NavItem[]>();
+  public dialog = inject(MatDialog);
+  private router = inject(Router);
+  public items = input.required<NavItem[]>();
 
   public openDialog(note?: Note) {
     this.router.navigate(['/notes']);

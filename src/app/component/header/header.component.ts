@@ -23,15 +23,12 @@ export class HeaderComponent implements OnDestroy {
   private router = inject(Router);
   private activatedRoute = inject(ActivatedRoute);
   private routerSub: Subscription;
-  public searchTitle = input.required<string>();
 
-  
-  isDesktop$ = inject(LayoutService).isDesktop$;
-  title = signal(this.getCurrentTitle());
+  public notesService = inject(NotesService);
+  public isDesktop$ = inject(LayoutService).isDesktop$;
+  public title = signal(this.getCurrentTitle());
 
-  constructor(
-    public notesService: NotesService
-  ) {
+  constructor() {
     this.routerSub = this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.title.set(this.getCurrentTitle());

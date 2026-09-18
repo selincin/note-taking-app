@@ -20,7 +20,7 @@ import { NotesService } from '../../services/notes.service';
 })
 
 export class SidebarNavComponent {
-  logoPath = 'assets/logos/logo.png';
+  public logoPath = 'assets/logos/logo.png';
 
   private router = inject(Router);
   public notesService = inject(NotesService);

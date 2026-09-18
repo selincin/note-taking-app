@@ -21,21 +21,10 @@ import { EmptyNoteStateComponent } from '../../component/empty-note-state/empty-
   styleUrl: './all-notes.page.css',
 })
 export class AllNotes {
-  constructor() {
-    toObservable(this.notesService.searchTerm)
-      .pipe(
-        debounceTime(800),
-        filter(term => term.trim().length >= 3)
-      )
-      .subscribe(term => {
-        this.notesService.addRecentSearch(term);
-      });
-  }
-
   private layoutService = inject(LayoutService);
   private router = inject(Router);
   private activatedRoute = inject(ActivatedRoute);
-  
+
   public notesService = inject(NotesService);
   public archived = input<boolean>(false);
   public notes = this.notesService.filteredNotes;
@@ -53,6 +42,17 @@ export class AllNotes {
     ),
     { initialValue: false }
   );
+
+  constructor() {
+    toObservable(this.notesService.searchTerm)
+      .pipe(
+        debounceTime(800),
+        filter(term => term.trim().length >= 3)
+      )
+      .subscribe(term => {
+        this.notesService.addRecentSearch(term);
+      });
+  }
 
   public ngOnInit(): void {
     this.notesService.fetchNotes(false);

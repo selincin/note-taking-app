@@ -4,7 +4,7 @@ A modern, responsive note-taking app built with Angular 20 and Angular Material.
 
 ## 🌐 Live Demo
 
-[Note-Taking App](#)
+[Note-Taking App](https://note-taking-app-selincin.vercel.app)
 Deployed with Vercel
 
 ## 🎯 Challenge

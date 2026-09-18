@@ -55,6 +55,4 @@ node_modules/
 /playwright/.auth/
 
 # Environment files
-src/environments/environment.ts
 src/environments/environment.base.ts
-src/environments/environment.development.ts

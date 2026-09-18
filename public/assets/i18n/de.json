@@ -1,0 +1,68 @@
+{
+  "NOTES_DIALOG": {
+    "TITLE_EDIT": "Notiz bearbeiten",
+    "TITLE_CREATE": "Neue Notiz erstellen",
+    "LABEL_TITLE": "Titel",
+    "LABEL_TEXT": "Text",
+    "LABEL_TAGS": "Tags",
+    "TAG_INPUT_PLACEHOLDER": "Neuer Tag...",
+    "TAG_SELECTION_ARIA_LABEL": "Tag-Auswahl",
+    "BUTTON_CANCEL": "Abbrechen",
+    "BUTTON_SAVE": "Speichern"
+  },
+  "EMPTY_ARCHIVED_STATE": {
+    "TITLE": "Archiv ist leer",
+    "DESCRIPTION": "Archivierte Notizen landen hier — sie bleiben erhalten, nur außerhalb der Hauptliste.",
+    "BUTTON_BACK_TO_NOTES": "Zu allen Notizen"
+  },
+  "EMPTY_NOTE_STATE": {
+    "TITLE": "Keine Notiz ausgewählt",
+    "DESCRIPTION": "Wähle links eine Notiz, um sie zu lesen oder fang eine neue an.",
+    "BUTTON_CREATE_NOTE": "Neue Notiz erstellen"
+  },
+  "HEADER": {
+    "CREATE_NOTE_ICON_ALT": "Neue Notiz erstellen"
+  },
+  "NOTE_DETAIL": {
+    "LOADING": "Lade Notiz...",
+    "TOOLTIP_UNARCHIVE": "Wiederherstellen",
+    "MENU_EDIT": "Bearbeiten",
+    "MENU_ARCHIVE": "Archivieren",
+    "MENU_UNARCHIVE": "Wiederherstellen",
+    "MENU_DELETE": "Löschen",
+    "ADD_NOTE_BUTTON_ARIA_LABEL": "Beispiel-Icon-Button mit einem Löschen-Icon"
+  },
+  "SIDEBAR_NAV": {
+    "TAGS_SECTION_TITLE": "Tags",
+    "TAG_FILTER_ARIA_LABEL": "Tag-Filter"
+  },
+  "ALL_NOTES": {
+    "NO_NOTES_TITLE": "Keine Notizen gefunden",
+    "NO_NOTES_DESCRIPTION": "Es wurden keine Ergebnisse gefunden"
+  },
+  "SEARCH": {
+    "SEARCH_PLACEHOLDER": "Notizen durchsuchen...",
+    "NO_NOTES_TITLE": "Keine Notizen gefunden",
+    "NO_NOTES_DESCRIPTION": "Für \"{{term}}\" wurden keine Ergebnisse gefunden.",
+    "RECENT_SEARCHES_TITLE": "Letzte Suchen",
+    "CLEAR_BUTTON": "Löschen"
+  },
+  "TAGS": {
+    "TAG_FILTER_ARIA_LABEL": "Tag-Filter",
+    "NO_TAG_SELECTED_TITLE": "Kein Tag ausgewählt",
+    "NO_TAG_SELECTED_DESCRIPTION": "Wähle oben einen oder mehrere Tags aus, um passende Notizen zu sehen.",
+    "NO_NOTES_TITLE": "Keine Notizen gefunden",
+    "NO_NOTES_DESCRIPTION": "Für die ausgewählten Tags wurden keine Notizen gefunden."
+  },
+  "TOASTS": {
+    "FETCH_NOTES_ERROR": "Notizen konnten nicht geladen werden",
+    "FETCH_NOTE_ERROR": "Notiz konnte nicht geladen werden",
+    "NOTE_CREATED_SUCCESS": "Notiz erstellt",
+    "CREATE_NOTE_ERROR": "Notiz konnte nicht erstellt werden",
+    "NOTE_UPDATED_SUCCESS": "Notiz aktualisiert",
+    "UPDATE_NOTE_ERROR": "Notiz konnte nicht aktualisiert werden",
+    "ARCHIVE_NOTE_ERROR": "Notiz konnte nicht archiviert werden",
+    "NOTE_DELETED_SUCCESS": "Notiz gelöscht",
+    "DELETE_NOTE_ERROR": "Notiz konnte nicht gelöscht werden"
+  }
+}

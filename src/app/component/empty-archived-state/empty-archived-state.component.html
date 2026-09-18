@@ -3,8 +3,8 @@
         <button mat-icon-button class="flex justify-center">
             <mat-icon>archive</mat-icon>
         </button>
-        Archiv ist leer
+        {{ 'EMPTY_ARCHIVED_STATE.TITLE' | translate }}
     </div>
-    <div class="text-center">Archivierte Notizen landen hier — sie bleiben erhalten, nur außerhalb der Hauptliste.</div>
-    <button matButton="filled" (click)="navigateToAllNotes()">Zu allen Notizen</button>
+    <div class="text-center">{{ 'EMPTY_ARCHIVED_STATE.DESCRIPTION' | translate }}</div>
+    <button matButton="filled" (click)="navigateToAllNotes()">{{ 'EMPTY_ARCHIVED_STATE.BUTTON_BACK_TO_NOTES' | translate }}</button>
 </div>

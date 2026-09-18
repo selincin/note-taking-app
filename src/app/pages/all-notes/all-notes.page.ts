@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { debounceTime, filter, map, startWith } from 'rxjs/operators';
 
@@ -16,7 +17,7 @@ import { EmptyNoteStateComponent } from '../../component/empty-note-state/empty-
 @Component({
   selector: 'app-all-notes',
   standalone: true,
-  imports: [NoteListComponent, MatIconModule, MatDividerModule, MatButtonModule, CommonModule, RouterModule, EmptyNoteStateComponent],
+  imports: [NoteListComponent, MatIconModule, MatDividerModule, MatButtonModule, CommonModule, RouterModule, EmptyNoteStateComponent, TranslatePipe],
   templateUrl: './all-notes.page.html',
   styleUrl: './all-notes.page.css',
 })

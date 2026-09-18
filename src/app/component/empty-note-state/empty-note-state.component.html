@@ -1,12 +1,12 @@
-<div class="custom-notes-backgroundw-full h-screen flex justify-center items-center">
+<div class="custom-notes-background w-full h-screen flex justify-center items-center">
     @if(showStickyNote()) {
         <div class="flex flex-col gap-3 h-auto sticky-note-styling">
             <img [src]="iconPath" class="h-20" />
-            <div class="font-bold text-3xl text-center">Keine Notiz ausgewählt</div>
-            <div class="text-lg text-center">Wähle links eine Notiz, um sie zu lesen oder fang eine neue an.</div>
+            <div class="font-bold text-3xl text-center">{{ 'EMPTY_NOTE_STATE.TITLE' | translate }}</div>
+            <div class="text-lg text-center">{{ 'EMPTY_NOTE_STATE.DESCRIPTION' | translate }}</div>
             <button matButton="tonal" class="create-note-btn flex items-center justify-center gap-2" (click)="openDialog()">
                 <mat-icon>add</mat-icon>
-                Create New Note
+                {{ 'EMPTY_NOTE_STATE.BUTTON_CREATE_NOTE' | translate }}
             </button>
         </div>
     }

@@ -2,6 +2,7 @@ import { computed, inject, Injectable, signal } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { lastValueFrom } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { TranslateService } from '@ngx-translate/core';
 
 import { environment } from '../../environments/environment';
 import { Note } from '../models/note.model';
@@ -15,7 +16,9 @@ export class NotesService {
     'Authorization': `Bearer ${environment.SUPABASE_KEY}`,
     'Content-Type': 'application/json'
   });
+  private http = inject(HttpClient);
   private toastr = inject(ToastrService);
+  private translate = inject(TranslateService);
   public recentSearches = signal<string[]>(this.loadRecentSearches());
   public notes = signal<Note[]>([]);
   public loading = signal(false);
@@ -56,8 +59,6 @@ export class NotesService {
     return Array.from(tagSet);
   });
 
-  constructor(private http: HttpClient) { }
-
   async fetchNotes(archived?: boolean): Promise<void> {
     this.loading.set(true);
     const url = `${environment.SUPABASE_URL}${environment.API_NOTES}?select=*&archived=eq.${archived}`;
@@ -71,7 +72,7 @@ export class NotesService {
 
     } catch (error) {
       console.error('Fehler beim Laden der Notes:', error);
-      this.toastr.error('Could not fetch notes')
+      this.toastr.error(this.translate.instant('TOASTS.FETCH_NOTES_ERROR'))
 
     } finally {
       this.loading.set(false);
@@ -94,7 +95,7 @@ export class NotesService {
 
     } catch (error) {
       console.error('Fehler beim Laden der Note:', error);
-      this.toastr.error('Could not fetch note')
+      this.toastr.error(this.translate.instant('TOASTS.FETCH_NOTE_ERROR'))
       return undefined;
     }
   }
@@ -119,11 +120,11 @@ export class NotesService {
 
       const createdNote = new Note(response[0]);
       this.notes.update(current => [createdNote, ...current]);
-      this.toastr.success('Note created');
+      this.toastr.success(this.translate.instant('TOASTS.NOTE_CREATED_SUCCESS'));
 
     } catch (error) {
       console.error('Fehler beim Erstellen der Note:', error);
-      this.toastr.error('Could not create note')
+      this.toastr.error(this.translate.instant('TOASTS.CREATE_NOTE_ERROR'))
     }
   }
 
@@ -139,10 +140,10 @@ export class NotesService {
       this.notes.update(current =>
         current.map(n => n.id === id ? new Note({ ...n, ...note, edited_at: editedAt }) : n)
       );
-      this.toastr.success('Note updated');
+      this.toastr.success(this.translate.instant('TOASTS.NOTE_UPDATED_SUCCESS'));
     } catch (error) {
       console.error('Fehler beim Aktualisieren der Note:', error);
-      this.toastr.error('Could not update note')
+      this.toastr.error(this.translate.instant('TOASTS.UPDATE_NOTE_ERROR'))
     }
   }
 
@@ -157,7 +158,7 @@ export class NotesService {
       this.notes.update(current => current.filter(n => n.id !== note.id));
     } catch (error) {
       console.error('Fehler beim Ändern des Archiv-Status:', error);
-      this.toastr.error('Could not archive note')
+      this.toastr.error(this.translate.instant('TOASTS.ARCHIVE_NOTE_ERROR'))
     }
   }
 
@@ -170,12 +171,12 @@ export class NotesService {
       );
 
       this.notes.update(current => current.filter(n => n.id !== id));
-      this.toastr.success('Note deleted');
+      this.toastr.success(this.translate.instant('TOASTS.NOTE_DELETED_SUCCESS'));
       console.log('Toast sollte jetzt erscheinen');
 
     } catch (error) {
       console.error('Fehler beim Löschen der Note:', error);
-      this.toastr.error('Could not delete note')
+      this.toastr.error(this.translate.instant('TOASTS.DELETE_NOTE_ERROR'))
     }
   }
 

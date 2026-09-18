@@ -1,7 +1,7 @@
 @let isDesktop = isDesktop$ | async;
 
 @if (loading()) {
-<div class="text-center mt-10">Lade Notiz...</div>
+<div class="text-center mt-10">{{ 'NOTE_DETAIL.LOADING' | translate }}</div>
 } @else if (note(); as note) {
 <div class="custom-notes-background p-5 h-screen">
     @if(!isDesktop){
@@ -14,7 +14,7 @@
             <div class="note-title text-2xl font-bold truncate">{{ note.title }}</div>
             @if(note?.archived) {
             <div class="flex gap-2">
-                <button matMiniFab (click)="toggleArchive(note)" matTooltip="unarchive">
+                <button matMiniFab (click)="toggleArchive(note)" [matTooltip]="'NOTE_DETAIL.TOOLTIP_UNARCHIVE' | translate">
                     <mat-icon>unarchive</mat-icon>
                 </button>
             </div>
@@ -25,15 +25,15 @@
             <mat-menu #noteMenu="matMenu" class="note-context-container">
                 <button mat-menu-item (click)="openDialog(note)" class="note-context-menu">
                     <mat-icon>edit</mat-icon>
-                    <span>Edit</span>
+                    <span>{{ 'NOTE_DETAIL.MENU_EDIT' | translate }}</span>
                 </button>
                 <button mat-menu-item (click)="toggleArchive(note)" class="note-context-menu">
                     <mat-icon>{{ note.archived ? 'unarchive' : 'archive' }}</mat-icon>
-                    <span>{{ note.archived ? 'Unarchive' : 'Archive' }}</span>
+                    <span>{{ (note.archived ? 'NOTE_DETAIL.MENU_UNARCHIVE' : 'NOTE_DETAIL.MENU_ARCHIVE') | translate }}</span>
                 </button>
                 <button mat-menu-item (click)="onDelete(note)" class="delete-menu-item" >
                     <mat-icon>delete</mat-icon>
-                    <span>Delete</span>
+                    <span>{{ 'NOTE_DETAIL.MENU_DELETE' | translate }}</span>
                 </button>
             </mat-menu>
             }
@@ -62,7 +62,7 @@
         {{ note.text }}
     </div>
     <div class="fixed right-6 z-10" [class]="isDesktop ? 'bottom-6' : 'bottom-20'">
-        <button matFab aria-label="Example icon button with a delete icon" (click)="openDialog()">
+        <button matFab [attr.aria-label]="'NOTE_DETAIL.ADD_NOTE_BUTTON_ARIA_LABEL' | translate" (click)="openDialog()">
             <mat-icon>add</mat-icon>
         </button>
     </div>

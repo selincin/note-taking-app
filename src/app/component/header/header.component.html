@@ -1,7 +1,7 @@
 <div [class]="(isDesktop$ | async) ? '' : ' bg-[#E5E5F7]'" class="header-container w-full h-20 border-b border-[#e5e7eb] flex items-center p-5 justify-between">
     <div class="flex gap-1 items-center">
         @if(!(isDesktop$ | async )) {
-           <img src="assets/logos/notes-icon.svg" alt="Create new note" class="h-11" />
+           <img src="assets/logos/notes-icon.svg" [attr.alt]="'HEADER.CREATE_NOTE_ICON_ALT' | translate" class="h-11" />
         }
         <div class="font-bold text-lg">{{ title() }}</div>
     </div>

@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule, MatChipInputEvent } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { Note } from '../../../models/note.model';
 import { NotesService } from '../../../services/notes.service';
@@ -21,7 +22,8 @@ import { NotesService } from '../../../services/notes.service';
     MatInputModule,
     MatButtonModule,
     MatChipsModule,
-    MatIconModule
+    MatIconModule,
+    TranslatePipe
   ],
   templateUrl: './notes-dialog.component.html',
   styleUrl: './notes-dialog.component.css',

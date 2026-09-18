@@ -4,6 +4,7 @@ import { Router, RouterModule } from '@angular/router';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatChipsModule } from '@angular/material/chips';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { NavItem } from '../../models/nav-item.model';
 import { NotesService } from '../../services/notes.service';
@@ -13,7 +14,7 @@ import { NoteListComponent } from '../../component/note-list/note-list.component
 @Component({
   selector: 'app-tags',
   standalone: true,
-  imports: [RouterModule, MatListModule, MatIconModule, MatChipsModule, NoteListComponent],
+  imports: [RouterModule, MatListModule, MatIconModule, MatChipsModule, NoteListComponent, TranslatePipe],
   templateUrl: './tags.page.html',
   styleUrl: './tags.page.css',
 })

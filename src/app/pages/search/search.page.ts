@@ -10,6 +10,7 @@ import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { debounceTime, filter } from 'rxjs';
 import { LayoutService } from '../../services/layout.service';
 import { Router } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-search',
@@ -18,7 +19,8 @@ import { Router } from '@angular/router';
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
-    NoteListComponent
+    NoteListComponent,
+    TranslatePipe
   ],
   templateUrl: './search.page.html',
   styleUrl: './search.page.css',

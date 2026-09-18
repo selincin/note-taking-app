@@ -1,17 +1,17 @@
-<div mat-dialog-title>{{ isEditMode ? 'Edit Note' : 'Create New Note' }}</div>
+<div mat-dialog-title>{{ (isEditMode ? 'NOTES_DIALOG.TITLE_EDIT' : 'NOTES_DIALOG.TITLE_CREATE') | translate }}</div>
 <form [formGroup]="noteForm" (ngSubmit)="onSave()">
   <mat-dialog-content>
     <mat-form-field appearance="outline" class="w-full">
-      <mat-label>Title</mat-label>
+      <mat-label>{{ 'NOTES_DIALOG.LABEL_TITLE' | translate }}</mat-label>
       <input matInput formControlName="title" />
     </mat-form-field>
     <mat-form-field appearance="outline" class="w-full">
-      <mat-label>Text</mat-label>
+      <mat-label>{{ 'NOTES_DIALOG.LABEL_TEXT' | translate }}</mat-label>
       <textarea matInput formControlName="text" rows="5"></textarea>
     </mat-form-field>
     <mat-form-field appearance="outline" class="w-full">
-      <mat-label>Tags</mat-label>
-      <mat-chip-grid #chipGrid aria-label="Tag selection">
+      <mat-label>{{ 'NOTES_DIALOG.LABEL_TAGS' | translate }}</mat-label>
+      <mat-chip-grid #chipGrid [attr.aria-label]="'NOTES_DIALOG.TAG_SELECTION_ARIA_LABEL' | translate">
         @for (tag of tags(); track tag) {
           <mat-chip-row (removed)="removeTag(tag)">
             {{ tag }}
@@ -22,14 +22,14 @@
         }
       </mat-chip-grid>
       <input
-        placeholder="New tag..."
+        [placeholder]="'NOTES_DIALOG.TAG_INPUT_PLACEHOLDER' | translate"
         [matChipInputFor]="chipGrid"
         [matChipInputSeparatorKeyCodes]="[13, 188]"
         (matChipInputTokenEnd)="addTag($event)" />
     </mat-form-field>
-  </mat-dialog-content>  
+  </mat-dialog-content>
   <mat-dialog-actions align="end">
-    <button mat-button type="button" (click)="onCancel()">Cancel</button>
-    <button mat-flat-button type="submit" [disabled]="saveDisabled()">Save</button>
+    <button mat-button type="button" (click)="onCancel()">{{ 'NOTES_DIALOG.BUTTON_CANCEL' | translate }}</button>
+    <button mat-flat-button type="submit" [disabled]="saveDisabled()">{{ 'NOTES_DIALOG.BUTTON_SAVE' | translate }}</button>
   </mat-dialog-actions>
 </form>

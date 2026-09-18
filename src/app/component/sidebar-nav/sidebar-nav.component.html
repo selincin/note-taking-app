@@ -16,8 +16,8 @@
   </mat-nav-list>
   @if (showTags()) {
     <div class="px-3 mt-4 flex flex-col gap-2 overflow-y-auto">
-      <div class="text-xs uppercase text-[#8A90A8]">Tags</div>
-      <mat-chip-set aria-label="Tag filter">
+      <div class="text-xs uppercase text-[#8A90A8]">{{ 'SIDEBAR_NAV.TAGS_SECTION_TITLE' | translate }}</div>
+      <mat-chip-set [attr.aria-label]="'SIDEBAR_NAV.TAG_FILTER_ARIA_LABEL' | translate">
         @for (tag of notesService.allTags(); track tag) {
           <mat-chip
             [highlighted]="notesService.selectedTags().includes(tag)"

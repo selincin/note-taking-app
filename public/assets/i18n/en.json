@@ -1,0 +1,68 @@
+{
+  "NOTES_DIALOG": {
+    "TITLE_EDIT": "Edit Note",
+    "TITLE_CREATE": "Create New Note",
+    "LABEL_TITLE": "Title",
+    "LABEL_TEXT": "Text",
+    "LABEL_TAGS": "Tags",
+    "TAG_INPUT_PLACEHOLDER": "New tag...",
+    "TAG_SELECTION_ARIA_LABEL": "Tag selection",
+    "BUTTON_CANCEL": "Cancel",
+    "BUTTON_SAVE": "Save"
+  },
+  "EMPTY_ARCHIVED_STATE": {
+    "TITLE": "Archive is empty",
+    "DESCRIPTION": "Archived notes end up here — they stay preserved, just outside the main list.",
+    "BUTTON_BACK_TO_NOTES": "Back to All Notes"
+  },
+  "EMPTY_NOTE_STATE": {
+    "TITLE": "No note selected",
+    "DESCRIPTION": "Select a note on the left to read it, or start a new one.",
+    "BUTTON_CREATE_NOTE": "Create New Note"
+  },
+  "HEADER": {
+    "CREATE_NOTE_ICON_ALT": "Create new note"
+  },
+  "NOTE_DETAIL": {
+    "LOADING": "Loading note...",
+    "TOOLTIP_UNARCHIVE": "Unarchive",
+    "MENU_EDIT": "Edit",
+    "MENU_ARCHIVE": "Archive",
+    "MENU_UNARCHIVE": "Unarchive",
+    "MENU_DELETE": "Delete",
+    "ADD_NOTE_BUTTON_ARIA_LABEL": "Example icon button with a delete icon"
+  },
+  "SIDEBAR_NAV": {
+    "TAGS_SECTION_TITLE": "Tags",
+    "TAG_FILTER_ARIA_LABEL": "Tag filter"
+  },
+  "ALL_NOTES": {
+    "NO_NOTES_TITLE": "No notes found",
+    "NO_NOTES_DESCRIPTION": "No results were found"
+  },
+  "SEARCH": {
+    "SEARCH_PLACEHOLDER": "Search notes...",
+    "NO_NOTES_TITLE": "No notes found",
+    "NO_NOTES_DESCRIPTION": "No results were found for \"{{term}}\".",
+    "RECENT_SEARCHES_TITLE": "Recent Searches",
+    "CLEAR_BUTTON": "Clear"
+  },
+  "TAGS": {
+    "TAG_FILTER_ARIA_LABEL": "Tag filter",
+    "NO_TAG_SELECTED_TITLE": "No tag selected",
+    "NO_TAG_SELECTED_DESCRIPTION": "Select one or more tags above to see matching notes.",
+    "NO_NOTES_TITLE": "No notes found",
+    "NO_NOTES_DESCRIPTION": "No notes were found for the selected tags."
+  },
+  "TOASTS": {
+    "FETCH_NOTES_ERROR": "Could not fetch notes",
+    "FETCH_NOTE_ERROR": "Could not fetch note",
+    "NOTE_CREATED_SUCCESS": "Note created",
+    "CREATE_NOTE_ERROR": "Could not create note",
+    "NOTE_UPDATED_SUCCESS": "Note updated",
+    "UPDATE_NOTE_ERROR": "Could not update note",
+    "ARCHIVE_NOTE_ERROR": "Could not archive note",
+    "NOTE_DELETED_SUCCESS": "Note deleted",
+    "DELETE_NOTE_ERROR": "Could not delete note"
+  }
+}

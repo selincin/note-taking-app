@@ -7,6 +7,7 @@ import { filter, map, startWith } from 'rxjs';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatChipsModule } from '@angular/material/chips';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { NavItem } from '../../models/nav-item.model';
 import { NotesService } from '../../services/notes.service';
@@ -14,7 +15,7 @@ import { NotesService } from '../../services/notes.service';
 @Component({
   selector: 'app-sidebar-nav',
   standalone: true,
-  imports: [RouterModule, MatListModule, MatIconModule, MatChipsModule],
+  imports: [RouterModule, MatListModule, MatIconModule, MatChipsModule, TranslatePipe],
   templateUrl: './sidebar-nav.component.html',
   styleUrl: './sidebar-nav.component.css'
 })

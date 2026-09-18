@@ -1,5 +1,5 @@
 <div class="h-screen p-5">
-    <mat-chip-set aria-label="Tag filter">
+    <mat-chip-set [attr.aria-label]="'TAGS.TAG_FILTER_ARIA_LABEL' | translate">
         @for (tag of notesService.allTags(); track tag) {
         <mat-chip [highlighted]="notesService.selectedTags().includes(tag)" (click)="toggleTag(tag)">
             {{ tag }}
@@ -14,9 +14,9 @@
     @if (notesService.selectedTags().length === 0) {
     <div class="h-screen flex justify-center items-center">
         <div class="flex flex-col items-center justify-center h-screen p-5 text-center">
-        <div class="text-base font-bold mt-2">Kein Tag ausgewählt</div>
+        <div class="text-base font-bold mt-2">{{ 'TAGS.NO_TAG_SELECTED_TITLE' | translate }}</div>
         <div class="text-sm text-gray-500 mt-1">
-            Wähle oben einen oder mehrere Tags aus, um passende Notizen zu sehen.
+            {{ 'TAGS.NO_TAG_SELECTED_DESCRIPTION' | translate }}
         </div>
         </div>
     </div>
@@ -27,9 +27,9 @@
     } @else {
     <div class="h-screen flex justify-center items-center">
         <div class="flex flex-col items-center justify-center h-screen p-5 text-center">
-        <div class="text-base font-bold mt-2">Keine Notizen gefunden</div>
+        <div class="text-base font-bold mt-2">{{ 'TAGS.NO_NOTES_TITLE' | translate }}</div>
         <div class="text-sm text-gray-500 mt-1">
-            Für die ausgewählten Tags wurden keine Notizen gefunden.
+            {{ 'TAGS.NO_NOTES_DESCRIPTION' | translate }}
         </div>
         </div>
     </div>

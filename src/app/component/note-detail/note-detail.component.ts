@@ -11,6 +11,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatMenuModule } from '@angular/material/menu';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { Note } from '../../models/note.model';
 import { NotesService } from '../../services/notes.service';
@@ -29,7 +30,8 @@ import { NotesDialogComponent } from '../dialogs/notes-dialog/notes-dialog.compo
     MatDividerModule,
     MatButtonModule,
     MatTooltipModule,
-    MatMenuModule
+    MatMenuModule,
+    TranslatePipe
   ],
   templateUrl: './note-detail.component.html',
   styleUrl: './note-detail.component.css',

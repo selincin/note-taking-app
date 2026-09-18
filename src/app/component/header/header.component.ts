@@ -8,6 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { LayoutService } from '../../services/layout.service';
 import { NotesService } from '../../services/notes.service';
@@ -15,7 +16,7 @@ import { NotesService } from '../../services/notes.service';
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, MatFormFieldModule, MatInputModule, MatIconModule, FormsModule],
+  imports: [CommonModule, MatFormFieldModule, MatInputModule, MatIconModule, FormsModule, TranslatePipe],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })

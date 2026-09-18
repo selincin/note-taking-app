@@ -3,13 +3,15 @@ import { MatIconModule } from '@angular/material/icon'
 
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-empty-archived-state',
   standalone: true,
   imports: [
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    TranslatePipe
   ],
   templateUrl: './empty-archived-state.component.html',
   styleUrl: './empty-archived-state.component.css',

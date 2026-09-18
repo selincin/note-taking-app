@@ -37,8 +37,12 @@
     "TAG_FILTER_ARIA_LABEL": "Tag filter"
   },
   "ALL_NOTES": {
+    "LOADING": "Loading notes...",
     "NO_NOTES_TITLE": "No notes found",
     "NO_NOTES_DESCRIPTION": "No results were found"
+  },
+  "ARCHIVED_NOTES": {
+    "LOADING": "Loading archived notes..."
   },
   "SEARCH": {
     "SEARCH_PLACEHOLDER": "Search notes...",
@@ -64,5 +68,19 @@
     "ARCHIVE_NOTE_ERROR": "Could not archive note",
     "NOTE_DELETED_SUCCESS": "Note deleted",
     "DELETE_NOTE_ERROR": "Could not delete note"
+  },
+  "NAV": {
+    "ALL_NOTES": "All Notes",
+    "SEARCH": "Search",
+    "ARCHIVED_NOTES": "Archived Notes",
+    "TAGS": "Tags"
+  },
+  "RELATIVE_DATE": {
+    "NOW": "now",
+    "MINUTE_AGO": "1 minute ago",
+    "MINUTES_AGO": "{{count}} minutes ago",
+    "HOUR_AGO": "1 hour ago",
+    "HOURS_AGO": "{{count}} hours ago",
+    "YESTERDAY": "yesterday"
   }
 }

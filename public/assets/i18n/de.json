@@ -37,8 +37,12 @@
     "TAG_FILTER_ARIA_LABEL": "Tag-Filter"
   },
   "ALL_NOTES": {
+    "LOADING": "Notizen werden geladen...",
     "NO_NOTES_TITLE": "Keine Notizen gefunden",
     "NO_NOTES_DESCRIPTION": "Es wurden keine Ergebnisse gefunden"
+  },
+  "ARCHIVED_NOTES": {
+    "LOADING": "Archivierte Notizen werden geladen..."
   },
   "SEARCH": {
     "SEARCH_PLACEHOLDER": "Notizen durchsuchen...",
@@ -64,5 +68,19 @@
     "ARCHIVE_NOTE_ERROR": "Notiz konnte nicht archiviert werden",
     "NOTE_DELETED_SUCCESS": "Notiz gelöscht",
     "DELETE_NOTE_ERROR": "Notiz konnte nicht gelöscht werden"
+  },
+  "NAV": {
+    "ALL_NOTES": "Alle Notizen",
+    "SEARCH": "Suche",
+    "ARCHIVED_NOTES": "Archivierte Notizen",
+    "TAGS": "Tags"
+  },
+  "RELATIVE_DATE": {
+    "NOW": "gerade eben",
+    "MINUTE_AGO": "vor 1 Minute",
+    "MINUTES_AGO": "vor {{count}} Minuten",
+    "HOUR_AGO": "vor 1 Stunde",
+    "HOURS_AGO": "vor {{count}} Stunden",
+    "YESTERDAY": "gestern"
   }
 }

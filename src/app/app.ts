@@ -21,7 +21,6 @@ export class App {
   public navItems = NAV_ITEMS;
 
   isHandset$ = this.layoutService.isHandset$;
-  isTablet$ = this.layoutService.isTablet$;
   isDesktop$ = this.layoutService.isDesktop$;
 
   constructor() {

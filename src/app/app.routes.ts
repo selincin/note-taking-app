@@ -10,7 +10,7 @@ export const routes: Routes = [
   {
     path: 'notes',
     component: AllNotes,
-    data: { title: 'All notes' },
+    data: { title: 'NAV.ALL_NOTES' },
     children: [
       {
         path: ':id',
@@ -21,7 +21,7 @@ export const routes: Routes = [
   {
     path: 'archived',
     component: ArchivedNotes,
-    data: { title: 'Archived Notes' },
+    data: { title: 'NAV.ARCHIVED_NOTES' },
     children: [
       {
         path: ':id',
@@ -29,6 +29,6 @@ export const routes: Routes = [
       },
     ],
   },
-  { path: 'search', data: { title: 'Search' }, component: SearchPage },
-  { path: 'tags', data: { title: 'Tags' }, component: TagsPage },
+  { path: 'search', data: { title: 'NAV.SEARCH' }, component: SearchPage },
+  { path: 'tags', data: { title: 'NAV.TAGS' }, component: TagsPage },
 ];

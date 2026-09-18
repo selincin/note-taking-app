@@ -6,8 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 
 import { NotesService } from '../../services/notes.service';
 import { NoteListComponent } from '../../component/note-list/note-list.component';
-import { toObservable, toSignal } from '@angular/core/rxjs-interop';
-import { debounceTime, filter } from 'rxjs';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { LayoutService } from '../../services/layout.service';
 import { Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -32,16 +31,7 @@ export class SearchPage {
   public notesService = inject(NotesService);
 
   constructor() {
-    toObservable(this.notesService.searchTerm)
-      .pipe(
-        debounceTime(800),
-        filter(term => term.trim().length >= 3)
-      )
-      .subscribe(term => {
-        this.notesService.addRecentSearch(term);
-      });
-
-      effect(() => {
+    effect(() => {
       if (this.isDesktop()) {
         this.router.navigate(['/notes']);
       }

@@ -3,7 +3,7 @@
         @if(!(isDesktop$ | async )) {
            <img src="assets/logos/notes-icon.svg" [attr.alt]="'HEADER.CREATE_NOTE_ICON_ALT' | translate" class="h-11" />
         }
-        <div class="font-bold text-lg">{{ title() }}</div>
+        <div class="font-bold text-lg">{{ title() | translate }}</div>
     </div>
     @if (isDesktop$ | async) {
     <mat-form-field appearance="outline" subscriptSizing="dynamic" class="search-field">

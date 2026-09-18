@@ -7,8 +7,8 @@ export interface NavItem {
 }
 
 export const NAV_ITEMS: NavItem[] = [
-  { label: 'All Notes', icon: 'home_filled', route: '/notes' },
-  { label: 'Search', icon: 'search', route: '/search', hideOnDesktop: true },
-  { label: 'Archived Notes', icon: 'archive', route: '/archived' },
-  { label: 'Tags', icon: 'sell', route: '/tags', hideOnDesktop: true },
+  { label: 'NAV.ALL_NOTES', icon: 'home_filled', route: '/notes' },
+  { label: 'NAV.SEARCH', icon: 'search', route: '/search', hideOnDesktop: true },
+  { label: 'NAV.ARCHIVED_NOTES', icon: 'archive', route: '/archived' },
+  { label: 'NAV.TAGS', icon: 'sell', route: '/tags', hideOnDesktop: true },
 ];

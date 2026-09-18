@@ -4,10 +4,10 @@ import { ActivatedRoute, NavigationEnd, Router, RouterModule } from '@angular/ro
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
-import { toObservable, toSignal } from '@angular/core/rxjs-interop';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { TranslatePipe } from '@ngx-translate/core';
 
-import { debounceTime, filter, map, startWith } from 'rxjs/operators';
+import { filter, map, startWith } from 'rxjs/operators';
 
 import { LayoutService } from '../../services/layout.service';
 import { NotesService } from '../../services/notes.service';
@@ -31,7 +31,6 @@ export class AllNotes {
   public notes = this.notesService.filteredNotes;
   public loading = this.notesService.loading;
   public isHandset$ = this.layoutService.isHandset$;
-  public isTablet$ = this.layoutService.isTablet$;
   public isDesktop$ = this.layoutService.isDesktop$;
 
   // signal that tracks whether a child route (a selected note) is currently active
@@ -43,17 +42,6 @@ export class AllNotes {
     ),
     { initialValue: false }
   );
-
-  constructor() {
-    toObservable(this.notesService.searchTerm)
-      .pipe(
-        debounceTime(800),
-        filter(term => term.trim().length >= 3)
-      )
-      .subscribe(term => {
-        this.notesService.addRecentSearch(term);
-      });
-  }
 
   public ngOnInit(): void {
     this.notesService.fetchNotes(false);

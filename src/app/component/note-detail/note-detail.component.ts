@@ -76,8 +76,8 @@ export class NoteDetailComponent {
     this.paramSub?.unsubscribe();
   }
 
-  public toggleArchive(note: Note) {
-    this.notesService.toggleArchive(note);
+  public async toggleArchive(note: Note) {
+    await this.notesService.toggleArchive(note);
     if (note.archived) {
       this.router.navigate(['/archived']);
     } else {

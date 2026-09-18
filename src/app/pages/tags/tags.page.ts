@@ -1,4 +1,4 @@
-import { Component, input, inject } from '@angular/core';
+import { Component, input, inject, effect } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 
 import { MatListModule } from '@angular/material/list';
@@ -9,6 +9,8 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { NavItem } from '../../models/nav-item.model';
 import { NotesService } from '../../services/notes.service';
 import { NoteListComponent } from '../../component/note-list/note-list.component';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { LayoutService } from '../../services/layout.service';
 
 
 @Component({
@@ -20,8 +22,18 @@ import { NoteListComponent } from '../../component/note-list/note-list.component
 })
 export class TagsPage {
   private router = inject(Router);
+  private layoutService = inject(LayoutService);
+  private isDesktop = toSignal(this.layoutService.isDesktop$, { initialValue: false });
   public notesService = inject(NotesService);
   public items = input.required<NavItem[]>();
+
+  constructor() {
+    effect(() => {
+      if (this.isDesktop()) {
+        this.router.navigate(['/notes']);
+      }
+    });
+  }
 
   ngOnInit() {
     if (this.notesService.notes().length === 0) {

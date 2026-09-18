@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { NoteListComponent } from '../../component/note-list/note-list.component';
 import { EmptyArchivedStateComponent } from '../../component/empty-archived-state/empty-archived-state.component';
@@ -17,7 +18,7 @@ import { LayoutService } from '../../services/layout.service';
 @Component({
   selector: 'app-archived-notes',
   standalone: true,
-  imports: [NoteListComponent, CommonModule, MatIconModule, MatDividerModule, MatButtonModule, RouterModule, EmptyNoteStateComponent, EmptyArchivedStateComponent],
+  imports: [NoteListComponent, CommonModule, MatIconModule, MatDividerModule, MatButtonModule, RouterModule, EmptyNoteStateComponent, EmptyArchivedStateComponent, TranslatePipe],
   templateUrl: './archived-notes.page.html',
   styleUrl: './archived-notes.page.css',
 })
@@ -27,9 +28,9 @@ export class ArchivedNotes {
   private router = inject(Router);
   private activatedRoute = inject(ActivatedRoute);
 
-  public notes = this.notesService.filteredNotes; 
+  public notes = this.notesService.filteredNotes;
+  public loading = this.notesService.loading;
   public isHandset$ = this.layoutService.isHandset$;
-  public isTablet$ = this.layoutService.isTablet$;
   public isDesktop$ = this.layoutService.isDesktop$;
 
   public ngOnInit(): void {

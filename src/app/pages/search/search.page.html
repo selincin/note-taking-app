@@ -5,8 +5,7 @@
             matInput
             [placeholder]="'SEARCH.SEARCH_PLACEHOLDER' | translate"
             [ngModel]="notesService.searchTerm()"
-            (ngModelChange)="notesService.searchTerm.set($event)
-        "
+            (ngModelChange)="notesService.searchTerm.set($event)"
         />
     </mat-form-field>
     @if (notesService.searchTerm().trim().length >= 3) {

@@ -1,4 +1,5 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import { inject, Pipe, PipeTransform } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import dayjs from 'dayjs';
 import isToday from 'dayjs/plugin/isToday';
 import isYesterday from 'dayjs/plugin/isYesterday';
@@ -19,6 +20,8 @@ type DateInput = string | Date | number | undefined | null;
   standalone: true,
 })
 export class RelativeDatePipe implements PipeTransform {
+  private translate = inject(TranslateService);
+
   public transform(dateTimeInput?: DateInput): string {
     if (!dateTimeInput) return '';
 
@@ -34,17 +37,17 @@ export class RelativeDatePipe implements PipeTransform {
     const diffInHours = now.diff(dateTime, 'hour');
 
     if (diffInMinutes < 60) {
-      if (diffInMinutes < 1) return 'now';
-      if (diffInMinutes === 1) return '1 minute ago';
-      return `${diffInMinutes} minutes ago`;
+      if (diffInMinutes < 1) return this.translate.instant('RELATIVE_DATE.NOW');
+      if (diffInMinutes === 1) return this.translate.instant('RELATIVE_DATE.MINUTE_AGO');
+      return this.translate.instant('RELATIVE_DATE.MINUTES_AGO', { count: diffInMinutes });
     }
 
     if (dateTime.isToday()) {
-      if (diffInHours === 1) return '1 hour ago';
-      return `${diffInHours} hours ago`;
+      if (diffInHours === 1) return this.translate.instant('RELATIVE_DATE.HOUR_AGO');
+      return this.translate.instant('RELATIVE_DATE.HOURS_AGO', { count: diffInHours });
     }
 
-    if (dateTime.isYesterday()) return 'yesterday';
+    if (dateTime.isYesterday()) return this.translate.instant('RELATIVE_DATE.YESTERDAY');
 
     return dateTime.format('DD/MM/YYYY');
   }

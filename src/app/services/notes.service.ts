@@ -1,6 +1,7 @@
 import { computed, inject, Injectable, signal } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { lastValueFrom } from 'rxjs';
+import { toObservable } from '@angular/core/rxjs-interop';
+import { debounceTime, filter, lastValueFrom } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -59,6 +60,15 @@ export class NotesService {
     return Array.from(tagSet);
   });
 
+  constructor() {
+    toObservable(this.searchTerm)
+      .pipe(
+        debounceTime(800),
+        filter(term => term.trim().length >= 3)
+      )
+      .subscribe(term => this.addRecentSearch(term));
+  }
+
   async fetchNotes(archived?: boolean): Promise<void> {
     this.loading.set(true);
     const url = `${environment.SUPABASE_URL}${environment.API_NOTES}?select=*&archived=eq.${archived}`;
@@ -86,6 +96,10 @@ export class NotesService {
       const response = await lastValueFrom(
         this.http.get<any[]>(url, { headers: this.headers })
       );
+
+      if (!response.length) {
+        return undefined;
+      }
 
       const note = new Note(response[0]);
       this.notes.update(current =>
@@ -172,8 +186,6 @@ export class NotesService {
 
       this.notes.update(current => current.filter(n => n.id !== id));
       this.toastr.success(this.translate.instant('TOASTS.NOTE_DELETED_SUCCESS'));
-      console.log('Toast sollte jetzt erscheinen');
-
     } catch (error) {
       console.error('Fehler beim Löschen der Note:', error);
       this.toastr.error(this.translate.instant('TOASTS.DELETE_NOTE_ERROR'))

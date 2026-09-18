@@ -1,10 +1,10 @@
-import { computed, Injectable, signal } from '@angular/core';
+import { computed, inject, Injectable, signal } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { lastValueFrom } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 import { environment } from '../../environments/environment';
 import { Note } from '../models/note.model';
-import { NotesFilter } from '../models/notes-filter.enum';
 
 @Injectable({ providedIn: 'root' })
 export class NotesService {
@@ -15,7 +15,7 @@ export class NotesService {
     'Authorization': `Bearer ${environment.SUPABASE_KEY}`,
     'Content-Type': 'application/json'
   });
-
+  private toastr = inject(ToastrService);
   public recentSearches = signal<string[]>(this.loadRecentSearches());
   public notes = signal<Note[]>([]);
   public loading = signal(false);
@@ -71,6 +71,7 @@ export class NotesService {
 
     } catch (error) {
       console.error('Fehler beim Laden der Notes:', error);
+      this.toastr.error('Could not fetch notes')
 
     } finally {
       this.loading.set(false);
@@ -93,6 +94,7 @@ export class NotesService {
 
     } catch (error) {
       console.error('Fehler beim Laden der Note:', error);
+      this.toastr.error('Could not fetch note')
       return undefined;
     }
   }
@@ -117,9 +119,11 @@ export class NotesService {
 
       const createdNote = new Note(response[0]);
       this.notes.update(current => [createdNote, ...current]);
+      this.toastr.success('Note created');
 
     } catch (error) {
       console.error('Fehler beim Erstellen der Note:', error);
+      this.toastr.error('Could not create note')
     }
   }
 
@@ -135,9 +139,10 @@ export class NotesService {
       this.notes.update(current =>
         current.map(n => n.id === id ? new Note({ ...n, ...note, edited_at: editedAt }) : n)
       );
-
+      this.toastr.success('Note updated');
     } catch (error) {
       console.error('Fehler beim Aktualisieren der Note:', error);
+      this.toastr.error('Could not update note')
     }
   }
 
@@ -152,6 +157,7 @@ export class NotesService {
       this.notes.update(current => current.filter(n => n.id !== note.id));
     } catch (error) {
       console.error('Fehler beim Ändern des Archiv-Status:', error);
+      this.toastr.error('Could not archive note')
     }
   }
 
@@ -164,8 +170,12 @@ export class NotesService {
       );
 
       this.notes.update(current => current.filter(n => n.id !== id));
+      this.toastr.success('Note deleted');
+      console.log('Toast sollte jetzt erscheinen');
+
     } catch (error) {
       console.error('Fehler beim Löschen der Note:', error);
+      this.toastr.error('Could not delete note')
     }
   }
 
